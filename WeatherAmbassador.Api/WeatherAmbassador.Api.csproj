@@ -5,7 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WeatherAmbassador.Persistence.EF\WeatherAmbassador.Persistence.EF.csproj" />
+    <ProjectReference Include="..\WeatherAmbassador.Proxies\WeatherAmbassador.Proxies.csproj" />
+    <ProjectReference Include="..\WeatherAmbassador.Services\WeatherAmbassador.Services.csproj" />
   </ItemGroup>
 
 </Project>
