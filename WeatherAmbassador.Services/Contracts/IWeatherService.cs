@@ -2,5 +2,6 @@
 {
     public interface IWeatherService
     {
+        string GetWeatherInfo();
     }
 }

@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using WeatherAmbassador.Api.Shared;
+using WeatherAmbassador.Services.Constants;
 using WeatherAmbassador.Services.Contracts;
 
-namespace WeatherAmbassador.Api.Controllers
+namespace WeatherAmbassador.Api.Setting
 {
     [ApiController]
     [Route("[controller]")]
@@ -23,11 +25,16 @@ namespace WeatherAmbassador.Api.Controllers
             var settings = settingReader.GetAllSettings();
             return Ok(settings);
         }
-
-
+        
         [HttpPatch]
         public IActionResult Patch(PatchRequestModel patchRequestModel)
         {
+            if (!SettingKey.AllSettingKeys.Contains(patchRequestModel.PropertyName))
+            {
+                throw new BadHttpRequestException($"{patchRequestModel.PropertyName} not exist!");
+            }
+
+            settingWriter.InsertOrUpdate(patchRequestModel.PropertyName, patchRequestModel.PropertyNewValue);
             return Ok();
         }
     }
