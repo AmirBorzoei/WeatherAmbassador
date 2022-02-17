@@ -2,8 +2,8 @@
 {
     public interface IWeatherRepository
     {
-        string GetWeatherLog(string apiCallKey);
-
+        string GetApiCallResult(string apiCallKey);
+        string GetLatestWeatherLog();
         void AddLatestWeatherLog(string apiCallKey, string apiCallResult);
     }
 }

@@ -7,10 +7,16 @@ namespace WeatherAmbassador.Persistence.EF.Repositories
 {
     public class WeatherRepository : IWeatherRepository
     {
-        public string GetWeatherLog(string apiCallKey)
+        public string GetApiCallResult(string apiCallKey)
         {
             using var weatherDbContext = new WeatherDbContext();
             return weatherDbContext.WeatherLogs.FirstOrDefault(w => w.ApiCallKey == apiCallKey)?.ApiCallResult;
+        }
+
+        public string GetLatestWeatherLog()
+        {
+            using var weatherDbContext = new WeatherDbContext();
+            return weatherDbContext.WeatherLogs.OrderByDescending(w => w.ApiCallDate).FirstOrDefault()?.ApiCallResult;
         }
 
         public void AddLatestWeatherLog(string apiCallKey, string apiCallResult)
