@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAmbassador.Proxies",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAmbassador.Persistence.EF", "WeatherAmbassador.Persistence.EF\WeatherAmbassador.Persistence.EF.csproj", "{FEBE83A6-2818-481B-9217-26E5AA9A6328}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAmbassador.Services.Test", "WeatherAmbassador.Services.Test\WeatherAmbassador.Services.Test.csproj", "{8388645D-3873-42A3-9235-EDD7B9E7C9F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FEBE83A6-2818-481B-9217-26E5AA9A6328}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEBE83A6-2818-481B-9217-26E5AA9A6328}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEBE83A6-2818-481B-9217-26E5AA9A6328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8388645D-3873-42A3-9235-EDD7B9E7C9F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8388645D-3873-42A3-9235-EDD7B9E7C9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8388645D-3873-42A3-9235-EDD7B9E7C9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8388645D-3873-42A3-9235-EDD7B9E7C9F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
