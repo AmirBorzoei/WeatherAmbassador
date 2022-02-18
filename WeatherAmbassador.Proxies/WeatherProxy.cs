@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net.Http;
+using Polly;
+using Polly.Wrap;
 using WeatherAmbassador.Services.Constants;
 using WeatherAmbassador.Services.Contracts;
 
@@ -21,13 +23,18 @@ namespace WeatherAmbassador.Proxies
             var weatherApiUrl = settingReader.GetSettingValue(SettingKey.WeatherApiUrl);
             var uri = new Uri(weatherApiUrl);
 
-            var c = httpClientFactory.CreateClient();
-            c.Timeout = TimeSpan.FromSeconds(5);
-            var res = c.GetStringAsync(uri);
+            var policies = GetApiCallPolicies();
+            var httpClient = httpClientFactory.CreateClient();
+            var apiResponse = policies.ExecuteAsync(() => httpClient.GetStringAsync(uri));
+            return apiResponse.Result;
+        }
 
-            var r = res.Result;
-
-            return r;
+        private AsyncPolicyWrap<string> GetApiCallPolicies()
+        {
+            var retryPolicy = Policy<string>.Handle<Exception>().RetryAsync(3);
+            var circuitBreakerPolicy = Policy.Handle<Exception>().CircuitBreakerAsync(2, TimeSpan.FromMilliseconds(1000));
+            var policies = retryPolicy.WrapAsync(circuitBreakerPolicy);
+            return policies;
         }
     }
 }
