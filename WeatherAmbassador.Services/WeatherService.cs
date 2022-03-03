@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WeatherAmbassador.Services.Constants;
 using WeatherAmbassador.Services.Contracts;
 
@@ -61,7 +62,10 @@ namespace WeatherAmbassador.Services
 
         private void SaveWeatherLog(string apiCallKey, string apiCallResult)
         {
-            weatherRepository.AddLatestWeatherLog(apiCallKey, apiCallResult);
+            Task.Factory.StartNew(() =>
+                {
+                    weatherRepository.AddLatestWeatherLog(apiCallKey, apiCallResult);
+                });
         }
 
         private string GetLatestWeatherLog()

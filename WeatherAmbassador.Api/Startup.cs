@@ -47,6 +47,14 @@ namespace WeatherAmbassador.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherAmbassador.Api v1"));
             }
 
+            app.UseExceptionHandler(appError =>
+                {
+                    appError.Run(async context =>
+                        {
+                            var i = 0;
+                        });
+                });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
